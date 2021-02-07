@@ -11800,11 +11800,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Source\\Repos\\NothWindApiDemo\\NorthWindApiDemo\\NorthWindApiDemo.csproj",
+      "projectUniqueName": "D:\\ReposKerberosGIT\\NorthWindApiDemo\\NorthWindApiDemo\\NorthWindApiDemo\\NorthWindApiDemo.csproj",
       "projectName": "NorthWindApiDemo",
-      "projectPath": "D:\\Source\\Repos\\NothWindApiDemo\\NorthWindApiDemo\\NorthWindApiDemo.csproj",
+      "projectPath": "D:\\ReposKerberosGIT\\NorthWindApiDemo\\NorthWindApiDemo\\NorthWindApiDemo\\NorthWindApiDemo.csproj",
       "packagesPath": "C:\\Users\\DEVELOPER 117\\.nuget\\packages\\",
-      "outputPath": "D:\\Source\\Repos\\NothWindApiDemo\\NorthWindApiDemo\\obj\\",
+      "outputPath": "D:\\ReposKerberosGIT\\NorthWindApiDemo\\NorthWindApiDemo\\NorthWindApiDemo\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
