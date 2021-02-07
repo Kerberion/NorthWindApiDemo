@@ -1,0 +1,14 @@
+D:\Source\Repos\NothWindApiDemo\NothWindApiDemo\bin\Debug\netcoreapp2.1\NothWindApiDemo.deps.json
+D:\Source\Repos\NothWindApiDemo\NothWindApiDemo\bin\Debug\netcoreapp2.1\NothWindApiDemo.runtimeconfig.json
+D:\Source\Repos\NothWindApiDemo\NothWindApiDemo\bin\Debug\netcoreapp2.1\NothWindApiDemo.runtimeconfig.dev.json
+D:\Source\Repos\NothWindApiDemo\NothWindApiDemo\bin\Debug\netcoreapp2.1\NothWindApiDemo.dll
+D:\Source\Repos\NothWindApiDemo\NothWindApiDemo\bin\Debug\netcoreapp2.1\NothWindApiDemo.pdb
+D:\Source\Repos\NothWindApiDemo\NothWindApiDemo\obj\Debug\netcoreapp2.1\NothWindApiDemo.csprojAssemblyReference.cache
+D:\Source\Repos\NothWindApiDemo\NothWindApiDemo\obj\Debug\netcoreapp2.1\NothWindApiDemo.csproj.CoreCompileInputs.cache
+D:\Source\Repos\NothWindApiDemo\NothWindApiDemo\obj\Debug\netcoreapp2.1\NothWindApiDemo.RazorAssemblyInfo.cache
+D:\Source\Repos\NothWindApiDemo\NothWindApiDemo\obj\Debug\netcoreapp2.1\NothWindApiDemo.RazorAssemblyInfo.cs
+D:\Source\Repos\NothWindApiDemo\NothWindApiDemo\obj\Debug\netcoreapp2.1\NothWindApiDemo.AssemblyInfoInputs.cache
+D:\Source\Repos\NothWindApiDemo\NothWindApiDemo\obj\Debug\netcoreapp2.1\NothWindApiDemo.AssemblyInfo.cs
+D:\Source\Repos\NothWindApiDemo\NothWindApiDemo\obj\Debug\netcoreapp2.1\NothWindApiDemo.RazorTargetAssemblyInfo.cache
+D:\Source\Repos\NothWindApiDemo\NothWindApiDemo\obj\Debug\netcoreapp2.1\NothWindApiDemo.dll
+D:\Source\Repos\NothWindApiDemo\NothWindApiDemo\obj\Debug\netcoreapp2.1\NothWindApiDemo.pdb
