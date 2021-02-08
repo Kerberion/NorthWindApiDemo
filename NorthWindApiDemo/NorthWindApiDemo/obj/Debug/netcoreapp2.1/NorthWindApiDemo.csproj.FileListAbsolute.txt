@@ -26,3 +26,17 @@ D:\Source\Repos\NothWindApiDemo\NorthWindApiDemo\obj\Debug\netcoreapp2.1\NorthWi
 D:\Source\Repos\NothWindApiDemo\NorthWindApiDemo\obj\Debug\netcoreapp2.1\NorthWindApiDemo.RazorTargetAssemblyInfo.cache
 D:\Source\Repos\NothWindApiDemo\NorthWindApiDemo\obj\Debug\netcoreapp2.1\NorthWindApiDemo.dll
 D:\Source\Repos\NothWindApiDemo\NorthWindApiDemo\obj\Debug\netcoreapp2.1\NorthWindApiDemo.pdb
+D:\ReposKerberosGIT\NorthWindApiDemo\NorthWindApiDemo\NorthWindApiDemo\bin\Debug\netcoreapp2.1\NorthWindApiDemo.deps.json
+D:\ReposKerberosGIT\NorthWindApiDemo\NorthWindApiDemo\NorthWindApiDemo\bin\Debug\netcoreapp2.1\NorthWindApiDemo.runtimeconfig.json
+D:\ReposKerberosGIT\NorthWindApiDemo\NorthWindApiDemo\NorthWindApiDemo\bin\Debug\netcoreapp2.1\NorthWindApiDemo.runtimeconfig.dev.json
+D:\ReposKerberosGIT\NorthWindApiDemo\NorthWindApiDemo\NorthWindApiDemo\bin\Debug\netcoreapp2.1\NorthWindApiDemo.dll
+D:\ReposKerberosGIT\NorthWindApiDemo\NorthWindApiDemo\NorthWindApiDemo\bin\Debug\netcoreapp2.1\NorthWindApiDemo.pdb
+D:\ReposKerberosGIT\NorthWindApiDemo\NorthWindApiDemo\NorthWindApiDemo\obj\Debug\netcoreapp2.1\NorthWindApiDemo.csprojAssemblyReference.cache
+D:\ReposKerberosGIT\NorthWindApiDemo\NorthWindApiDemo\NorthWindApiDemo\obj\Debug\netcoreapp2.1\NorthWindApiDemo.csproj.CoreCompileInputs.cache
+D:\ReposKerberosGIT\NorthWindApiDemo\NorthWindApiDemo\NorthWindApiDemo\obj\Debug\netcoreapp2.1\NorthWindApiDemo.RazorAssemblyInfo.cache
+D:\ReposKerberosGIT\NorthWindApiDemo\NorthWindApiDemo\NorthWindApiDemo\obj\Debug\netcoreapp2.1\NorthWindApiDemo.RazorAssemblyInfo.cs
+D:\ReposKerberosGIT\NorthWindApiDemo\NorthWindApiDemo\NorthWindApiDemo\obj\Debug\netcoreapp2.1\NorthWindApiDemo.AssemblyInfoInputs.cache
+D:\ReposKerberosGIT\NorthWindApiDemo\NorthWindApiDemo\NorthWindApiDemo\obj\Debug\netcoreapp2.1\NorthWindApiDemo.AssemblyInfo.cs
+D:\ReposKerberosGIT\NorthWindApiDemo\NorthWindApiDemo\NorthWindApiDemo\obj\Debug\netcoreapp2.1\NorthWindApiDemo.RazorTargetAssemblyInfo.cache
+D:\ReposKerberosGIT\NorthWindApiDemo\NorthWindApiDemo\NorthWindApiDemo\obj\Debug\netcoreapp2.1\NorthWindApiDemo.dll
+D:\ReposKerberosGIT\NorthWindApiDemo\NorthWindApiDemo\NorthWindApiDemo\obj\Debug\netcoreapp2.1\NorthWindApiDemo.pdb

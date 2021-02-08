@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "e071b1a7c9d575b1b3d9ba6c9a1be1d9c6701ca2"
+    "signature": "74dc94ab8c0c406b7526b40891510cb5e9d41b92"
   },
   "compilationOptions": {
     "defines": [
@@ -24,6 +24,7 @@
     ".NETCoreApp,Version=v2.1": {
       "NorthWindApiDemo/1.0.0": {
         "dependencies": {
+          "Foundation.ObjectHydrator.Core": "1.0.2",
           "Microsoft.AspNetCore.App": "2.1.1",
           "Microsoft.AspNetCore.Razor.Design": "2.1.2",
           "Microsoft.NETCore.App": "2.1.0"
@@ -33,6 +34,22 @@
         },
         "compile": {
           "NorthWindApiDemo.dll": {}
+        }
+      },
+      "Foundation.ObjectHydrator.Core/1.0.2": {
+        "dependencies": {
+          "NETStandard.Library": "2.0.3",
+          "System.ComponentModel.Annotations": "4.5.0",
+          "System.Reflection.TypeExtensions": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.6/Foundation.ObjectHydrator.Core.dll": {
+            "assemblyVersion": "1.0.2.0",
+            "fileVersion": "1.0.2.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard1.6/Foundation.ObjectHydrator.Core.dll": {}
         }
       },
       "Microsoft.AspNetCore.Razor.Design/2.1.2": {},
@@ -3154,6 +3171,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Foundation.ObjectHydrator.Core/1.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ZG5thuFj6Ks4TIvUYgqjYZFvZSegQqqQGbD77TBze002Jw6XcI0kYdNpBXqcGqVPaqVJ3V8RhDeyIBZ/fHpcXg==",
+      "path": "foundation.objecthydrator.core/1.0.2",
+      "hashPath": "foundation.objecthydrator.core.1.0.2.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Razor.Design/2.1.2": {
       "type": "package",

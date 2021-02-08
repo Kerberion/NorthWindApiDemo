@@ -2,6 +2,20 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.1": {
+      "Foundation.ObjectHydrator.Core/1.0.2": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0",
+          "System.ComponentModel.Annotations": "4.3.0",
+          "System.Reflection.TypeExtensions": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard1.6/Foundation.ObjectHydrator.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/Foundation.ObjectHydrator.Core.dll": {}
+        }
+      },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
         "type": "package",
         "dependencies": {
@@ -4337,6 +4351,19 @@
     }
   },
   "libraries": {
+    "Foundation.ObjectHydrator.Core/1.0.2": {
+      "sha512": "ZG5thuFj6Ks4TIvUYgqjYZFvZSegQqqQGbD77TBze002Jw6XcI0kYdNpBXqcGqVPaqVJ3V8RhDeyIBZ/fHpcXg==",
+      "type": "package",
+      "path": "foundation.objecthydrator.core/1.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "foundation.objecthydrator.core.1.0.2.nupkg.sha512",
+        "foundation.objecthydrator.core.nuspec",
+        "lib/net462/Foundation.ObjectHydrator.Core.dll",
+        "lib/netstandard1.6/Foundation.ObjectHydrator.Core.dll"
+      ]
+    },
     "Microsoft.AspNet.WebApi.Client/5.2.6": {
       "sha512": "owAlEIUZXWSnkK8Z1c+zR47A0X6ykF4XjbPok4lQKNuciUfHLGPd6QnI+rt/8KlQ17PmF+I4S3f+m+Qe4IvViw==",
       "type": "package",
@@ -11788,6 +11815,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
+      "Foundation.ObjectHydrator.Core >= 1.0.2",
       "Microsoft.AspNetCore.App >= 2.1.1",
       "Microsoft.AspNetCore.Razor.Design >= 2.1.2",
       "Microsoft.NETCore.App >= 2.1.0"
@@ -11834,6 +11862,10 @@
     "frameworks": {
       "netcoreapp2.1": {
         "dependencies": {
+          "Foundation.ObjectHydrator.Core": {
+            "target": "Package",
+            "version": "[1.0.2, )"
+          },
           "Microsoft.AspNetCore.App": {
             "suppressParent": "All",
             "target": "Package",
