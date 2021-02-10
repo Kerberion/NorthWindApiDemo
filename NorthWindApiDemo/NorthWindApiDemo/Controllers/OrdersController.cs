@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Mvc;
 using NorthWindApiDemo.Models;
 using System;
 using System.Collections.Generic;
@@ -145,6 +146,77 @@ namespace NorthWindApiDemo.Controllers
             orderFromRepository.ShipRegion = order.ShipRegion;
             orderFromRepository.ShipPostalCode = order.ShipPostalCode;
             orderFromRepository.ShipCountry = order.ShipCountry;
+
+            return NoContent();
+        }
+
+        [HttpPatch("{customerId}/orders/{id}")]
+        public IActionResult UpdateOrder(int customerId, int id, [FromBody] JsonPatchDocument<OrdersForUpdateDTO> patchDocument)
+        {
+            if (patchDocument == null)
+            {
+                return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var customer = Repository.
+             Instance.
+             Customers.
+             FirstOrDefault(c => c.Id == customerId);
+
+            if (customer == null)
+            {
+                return NotFound();
+            }
+
+            var orderFromRepository = customer.Orders.FirstOrDefault(o => o.OrderId == id);
+
+            if (orderFromRepository == null)
+            {
+                return NotFound();
+            }
+
+            var orderToUpdate = new OrdersForUpdateDTO()
+            {
+                CustomerId = orderFromRepository.CustomerId,
+                EmployeeId = orderFromRepository.EmployeeId,
+                OrderDate = orderFromRepository.OrderDate,
+                RequiredDate = orderFromRepository.RequiredDate,
+                ShippedDate = orderFromRepository.ShippedDate,
+                ShipVia = orderFromRepository.ShipVia,
+                Freight = orderFromRepository.Freight,
+                ShipName = orderFromRepository.ShipName,
+                ShipAddress = orderFromRepository.ShipAddress,
+                ShipCity = orderFromRepository.ShipCity,
+                ShipRegion = orderFromRepository.ShipRegion,
+                ShipPostalCode = orderFromRepository.ShipPostalCode,
+                ShipCountry = orderFromRepository.ShipCountry
+            };
+
+            patchDocument.ApplyTo(orderToUpdate,ModelState);
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            orderFromRepository.CustomerId = orderToUpdate.CustomerId;
+            orderFromRepository.EmployeeId = orderToUpdate.EmployeeId;
+            orderFromRepository.OrderDate = orderToUpdate.OrderDate;
+            orderFromRepository.RequiredDate = orderToUpdate.RequiredDate;
+            orderFromRepository.ShippedDate = orderToUpdate.ShippedDate;
+            orderFromRepository.ShipVia = orderToUpdate.ShipVia;
+            orderFromRepository.Freight = orderToUpdate.Freight;
+            orderFromRepository.ShipName = orderToUpdate.ShipName;
+            orderFromRepository.ShipAddress = orderToUpdate.ShipAddress;
+            orderFromRepository.ShipCity = orderToUpdate.ShipCity;
+            orderFromRepository.ShipRegion = orderToUpdate.ShipRegion;
+            orderFromRepository.ShipPostalCode = orderToUpdate.ShipPostalCode;
+            orderFromRepository.ShipCountry = orderToUpdate.ShipCountry;
 
             return NoContent();
         }
