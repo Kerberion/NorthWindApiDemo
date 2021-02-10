@@ -101,5 +101,52 @@ namespace NorthWindApiDemo.Controllers
                     customerId = customerId,id = finalOrder.OrderId
                 }, finalOrder);
         }
+
+        [HttpPut("{customerId}/orders/{id}")]
+        public IActionResult UpdateOrder(int customerId, int id,[FromBody] OrdersForUpdateDTO order)
+        {
+            if (order == null)
+            {
+                return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var customer = Repository.
+             Instance.
+             Customers.
+             FirstOrDefault(c => c.Id == customerId);
+
+            if (customer == null)
+            {
+                return NotFound();
+            }
+
+            var orderFromRepository = customer.Orders.FirstOrDefault(o => o.OrderId == id);
+
+            if (orderFromRepository == null)
+            {
+                return NotFound();
+            }
+
+            orderFromRepository.CustomerId = order.CustomerId;
+            orderFromRepository.EmployeeId = order.EmployeeId;
+            orderFromRepository.OrderDate = order.OrderDate;
+            orderFromRepository.RequiredDate = order.RequiredDate;
+            orderFromRepository.ShippedDate = order.ShippedDate;
+            orderFromRepository.ShipVia = order.ShipVia;
+            orderFromRepository.Freight = order.Freight;
+            orderFromRepository.ShipName = order.ShipName;
+            orderFromRepository.ShipAddress = order.ShipAddress;
+            orderFromRepository.ShipCity = order.ShipCity;
+            orderFromRepository.ShipRegion = order.ShipRegion;
+            orderFromRepository.ShipPostalCode = order.ShipPostalCode;
+            orderFromRepository.ShipCountry = order.ShipCountry;
+
+            return NoContent();
+        }
     }
 }
