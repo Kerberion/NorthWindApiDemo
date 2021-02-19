@@ -10,6 +10,7 @@ namespace NorthWindApiDemo.EFModels
         {
         }
 
+        //Configurar el constructor para usar la cadena de configuración implementada en el startup
         public NorthWindContext(DbContextOptions<NorthWindContext> options)
             : base(options)
         {

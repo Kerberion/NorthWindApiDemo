@@ -39,3 +39,4 @@ D:\ReposKerberosGIT\NorthWindApiDemo\NorthWindApiDemo\NorthWindApiDemo\obj\Debug
 D:\ReposKerberosGIT\NorthWindApiDemo\NorthWindApiDemo\NorthWindApiDemo\obj\Debug\netcoreapp2.1\NorthWindApiDemo.RazorTargetAssemblyInfo.cache
 D:\ReposKerberosGIT\NorthWindApiDemo\NorthWindApiDemo\NorthWindApiDemo\obj\Debug\netcoreapp2.1\NorthWindApiDemo.dll
 D:\ReposKerberosGIT\NorthWindApiDemo\NorthWindApiDemo\NorthWindApiDemo\obj\Debug\netcoreapp2.1\NorthWindApiDemo.pdb
+D:\ReposKerberosGIT\NorthWindApiDemo\NorthWindApiDemo\NorthWindApiDemo\obj\Debug\netcoreapp2.1\NorthWindApiDemo.csprojAssemblyReference.cache
