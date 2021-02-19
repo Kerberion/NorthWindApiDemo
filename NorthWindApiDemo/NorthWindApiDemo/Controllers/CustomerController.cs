@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using NorthWindApiDemo.Models;
 using NorthWindApiDemo.Services;
 using System;
@@ -32,25 +33,26 @@ namespace NorthWindApiDemo.Controllers
             ///
             // lo ideal es devolver el conjunto de datos personalizados del DTO y no de la base de datos
             var customers = _customerRepostory.GetCustomers();
-            var results = new List<CustomerWithoutOrders>();
+            var results = Mapper.Map<IEnumerable<CustomerWithoutOrders>>(customers);
+            //var results = new List<CustomerWithoutOrders>();
 
-            foreach(var customer in customers)
-            {
-                results.Add(new CustomerWithoutOrders()
-                {
-                    CustomerID = customer.CustomerId,
-                    CompanyName = customer.CompanyName,
-                    ContactName = customer.ContactName,
-                    ContactTittle = customer.ContactTitle,
-                    Address = customer.Address,
-                    City = customer.City,
-                    Region = customer.Region,
-                    PostalCode = customer.PostalCode,
-                    Country = customer.Country,
-                    Phone = customer.Phone,
-                    Fax = customer.Fax
-                });
-            }
+            //foreach(var customer in customers)
+            //{
+            //    results.Add(new CustomerWithoutOrders()
+            //    {
+            //        CustomerID = customer.CustomerId,
+            //        CompanyName = customer.CompanyName,
+            //        ContactName = customer.ContactName,
+            //        ContactTittle = customer.ContactTitle,
+            //        Address = customer.Address,
+            //        City = customer.City,
+            //        Region = customer.Region,
+            //        PostalCode = customer.PostalCode,
+            //        Country = customer.Country,
+            //        Phone = customer.Phone,
+            //        Fax = customer.Fax
+            //    });
+            //}
 
             return new JsonResult(results);
         }

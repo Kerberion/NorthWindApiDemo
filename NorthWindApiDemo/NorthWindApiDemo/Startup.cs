@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using NorthWindApiDemo.EFModels;
+using NorthWindApiDemo.Models;
 using NorthWindApiDemo.Services;
 
 namespace NorthWindApiDemo
@@ -44,6 +45,13 @@ namespace NorthWindApiDemo
             }
 
             app.UseStatusCodePages();
+
+            //Inicializar el mapeo
+
+            AutoMapper.Mapper.Initialize(config =>
+            {
+                config.CreateMap<Customers, CustomerWithoutOrders>();
+            });
 
             app.UseMvc();
 
