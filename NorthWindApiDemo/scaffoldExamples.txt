@@ -1,0 +1,3 @@
+Scaffold-DbContext "Server=.\KERBEROSDEV;Database=NorthWind;Trusted_Connection=True"
+
+Scaffold-DbContext "Server=.\KERBEROSDEV;Database=NorthWind;User Id = sa;Password=SoyElAveDeHermes2906" Microsoft.EntityFrameworkCore.SqlServer -OutputDir EFModels

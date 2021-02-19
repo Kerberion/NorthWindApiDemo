@@ -31,7 +31,6 @@ D:\ReposKerberosGIT\NorthWindApiDemo\NorthWindApiDemo\NorthWindApiDemo\bin\Debug
 D:\ReposKerberosGIT\NorthWindApiDemo\NorthWindApiDemo\NorthWindApiDemo\bin\Debug\netcoreapp2.1\NorthWindApiDemo.runtimeconfig.dev.json
 D:\ReposKerberosGIT\NorthWindApiDemo\NorthWindApiDemo\NorthWindApiDemo\bin\Debug\netcoreapp2.1\NorthWindApiDemo.dll
 D:\ReposKerberosGIT\NorthWindApiDemo\NorthWindApiDemo\NorthWindApiDemo\bin\Debug\netcoreapp2.1\NorthWindApiDemo.pdb
-D:\ReposKerberosGIT\NorthWindApiDemo\NorthWindApiDemo\NorthWindApiDemo\obj\Debug\netcoreapp2.1\NorthWindApiDemo.csprojAssemblyReference.cache
 D:\ReposKerberosGIT\NorthWindApiDemo\NorthWindApiDemo\NorthWindApiDemo\obj\Debug\netcoreapp2.1\NorthWindApiDemo.csproj.CoreCompileInputs.cache
 D:\ReposKerberosGIT\NorthWindApiDemo\NorthWindApiDemo\NorthWindApiDemo\obj\Debug\netcoreapp2.1\NorthWindApiDemo.RazorAssemblyInfo.cache
 D:\ReposKerberosGIT\NorthWindApiDemo\NorthWindApiDemo\NorthWindApiDemo\obj\Debug\netcoreapp2.1\NorthWindApiDemo.RazorAssemblyInfo.cs

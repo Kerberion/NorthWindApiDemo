@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using NorthWindApiDemo.EFModels;
 
 namespace NorthWindApiDemo
 {
@@ -16,6 +18,13 @@ namespace NorthWindApiDemo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(); //reciba las peticiones http
+
+            //Nuevas configuraciones
+            //Con esto podemos usar el contexto de datos
+            services.AddDbContext<NorthWindContext>( options =>
+            {
+                options.UseSqlServer("Server=.\\KERBEROSDEV;Database=NorthWind;User Id = sa;Password=SoyElAveDeHermes2906");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
