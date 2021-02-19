@@ -59,18 +59,34 @@ namespace NorthWindApiDemo.Controllers
 
         [HttpGet("{id}")]
         //Regresar tipo generico ejemplo de JsonResult  retornar IACtionResult
-        public IActionResult GetCustomer(int id)
+        public IActionResult GetCustomer(string id, bool includeOrders = false)
         {
-            var result =
-                Repository.Instance.Customers.
-                FirstOrDefault(c => c.Id == id);
+            //var result =
+            //    Repository.Instance.Customers.
+            //    FirstOrDefault(c => c.Id == id);
 
-            if (result == null)
+            var customer = _customerRepostory.GetCustomer(id, includeOrders);
+
+            if (customer == null)
             {
                 return NotFound();
             }
 
-            return Ok(result);
+            //if (result == null)
+            //{
+            //    return NotFound();
+            //}
+            
+            if (includeOrders)
+            {
+                var customerResult = Mapper.Map<CustomerDTO>(customer);
+                return Ok(customerResult);
+            }
+
+            var customerResultOnly = Mapper.Map<CustomerWithoutOrders>(customer);
+            return Ok(customerResultOnly);
+
+            //return Ok(result);
             //return new JsonResult(result);
         }
     }

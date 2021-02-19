@@ -51,6 +51,8 @@ namespace NorthWindApiDemo
             AutoMapper.Mapper.Initialize(config =>
             {
                 config.CreateMap<Customers, CustomerWithoutOrders>();
+                config.CreateMap<Customers, CustomerDTO>();
+                config.CreateMap<Orders, OrdersDTO>();
             });
 
             app.UseMvc();
