@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using NorthWindApiDemo.EFModels;
+using NorthWindApiDemo.Services;
 
 namespace NorthWindApiDemo
 {
@@ -25,6 +26,9 @@ namespace NorthWindApiDemo
             {
                 options.UseSqlServer("Server=.\\KERBEROSDEV;Database=NorthWind;User Id = sa;Password=SoyElAveDeHermes2906");
             });
+
+            //Configurar servicios personalizados
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
