@@ -313,26 +313,47 @@ namespace NorthWindApiDemo.Controllers
         }
 
         [HttpDelete("{customerId}/orders/{id}")]
-        public IActionResult DeleteOrder(int customerId,int id)
+        public IActionResult DeleteOrder(string customerId,int id)
         {
-            var customer = Repository.
-           Instance.
-           Customers.
-           FirstOrDefault(c => c.Id == customerId);
 
-            if (customer == null)
+            if (!_customerRepoitory.CustomerExists(customerId))
             {
                 return NotFound();
             }
 
-            var orderFromRepository = customer.Orders.FirstOrDefault(o => o.OrderId == id);
+            var existingOrder = _customerRepoitory.GetOrder(customerId, id);
 
-            if (orderFromRepository == null)
+            if (existingOrder == null)
             {
                 return NotFound();
             }
+            // var customer = Repository.
+            //Instance.
+            //Customers.
+            //FirstOrDefault(c => c.Id == customerId);
 
-            customer.Orders.Remove(orderFromRepository);
+            // if (customer == null)
+            // {
+            //     return NotFound();
+            // }
+
+            // var orderFromRepository = customer.Orders.FirstOrDefault(o => o.OrderId == id);
+
+            // if (orderFromRepository == null)
+            // {
+            //     return NotFound();
+            // }
+
+            //En esta línea el registro se esta borrando unicamente en memoría
+            _customerRepoitory.DeleteOrder(existingOrder);
+
+            //en el save se ejecuta la instruccion para hacer el guardado en la base de datos
+            if (!_customerRepoitory.save())
+            {
+                return StatusCode(500, "Please verify your data");
+            }
+
+            //customer.Orders.Remove(orderFromRepository);
             return NoContent();
         }
     }

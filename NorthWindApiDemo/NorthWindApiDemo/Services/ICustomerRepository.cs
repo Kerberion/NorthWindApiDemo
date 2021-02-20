@@ -15,5 +15,7 @@ namespace NorthWindApiDemo.Services
         bool CustomerExists(string customerId);
         void Addorder(string customerId, Orders order);
         bool save();
+
+        void DeleteOrder(Orders order);
     }
 }

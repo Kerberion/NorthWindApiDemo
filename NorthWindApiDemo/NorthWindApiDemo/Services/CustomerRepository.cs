@@ -27,6 +27,11 @@ namespace NorthWindApiDemo.Services
             return _context.Customers.Any(c => c.CustomerId == customerId);
         }
 
+        public void DeleteOrder(Orders order)
+        {
+            _context.Orders.Remove(order);
+        }
+
         public Customers GetCustomer(string customerId, bool includeOrders)
         {
             if (includeOrders)
