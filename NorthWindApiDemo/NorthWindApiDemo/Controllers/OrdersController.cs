@@ -154,7 +154,7 @@ namespace NorthWindApiDemo.Controllers
         }
 
         [HttpPut("{customerId}/orders/{id}")]
-        public IActionResult UpdateOrder(int customerId, int id,[FromBody] OrdersForUpdateDTO order)
+        public IActionResult UpdateOrder(string customerId, int id,[FromBody] OrdersForUpdateDTO order)
         {
             if (order == null)
             {
@@ -166,36 +166,55 @@ namespace NorthWindApiDemo.Controllers
                 return BadRequest(ModelState);
             }
 
-            var customer = Repository.
-             Instance.
-             Customers.
-             FirstOrDefault(c => c.Id == customerId);
+            //var customer = Repository.
+            // Instance.
+            // Customers.
+            // FirstOrDefault(c => c.Id == customerId);
 
-            if (customer == null)
+            //if (customer == null)
+            //{
+            //    return NotFound();
+            //}
+
+            if (!_customerRepoitory.CustomerExists(customerId))
             {
                 return NotFound();
             }
 
-            var orderFromRepository = customer.Orders.FirstOrDefault(o => o.OrderId == id);
+            var existingORder = _customerRepoitory.GetOrder(customerId, id);
 
-            if (orderFromRepository == null)
+            if (existingORder == null)
             {
                 return NotFound();
             }
 
-            orderFromRepository.CustomerId = order.CustomerId;
-            orderFromRepository.EmployeeId = order.EmployeeId;
-            orderFromRepository.OrderDate = order.OrderDate;
-            orderFromRepository.RequiredDate = order.RequiredDate;
-            orderFromRepository.ShippedDate = order.ShippedDate;
-            orderFromRepository.ShipVia = order.ShipVia;
-            orderFromRepository.Freight = order.Freight;
-            orderFromRepository.ShipName = order.ShipName;
-            orderFromRepository.ShipAddress = order.ShipAddress;
-            orderFromRepository.ShipCity = order.ShipCity;
-            orderFromRepository.ShipRegion = order.ShipRegion;
-            orderFromRepository.ShipPostalCode = order.ShipPostalCode;
-            orderFromRepository.ShipCountry = order.ShipCountry;
+            //var orderFromRepository = customer.Orders.FirstOrDefault(o => o.OrderId == id);
+
+            //if (orderFromRepository == null)
+            //{
+            //    return NotFound();
+            //}
+
+            Mapper.Map(order, existingORder);
+
+            if (!_customerRepoitory.save())
+            {
+                return StatusCode(500, "Please verify your data");
+            }
+
+            //orderFromRepository.CustomerId = order.CustomerId;
+            //orderFromRepository.EmployeeId = order.EmployeeId;
+            //orderFromRepository.OrderDate = order.OrderDate;
+            //orderFromRepository.RequiredDate = order.RequiredDate;
+            //orderFromRepository.ShippedDate = order.ShippedDate;
+            //orderFromRepository.ShipVia = order.ShipVia;
+            //orderFromRepository.Freight = order.Freight;
+            //orderFromRepository.ShipName = order.ShipName;
+            //orderFromRepository.ShipAddress = order.ShipAddress;
+            //orderFromRepository.ShipCity = order.ShipCity;
+            //orderFromRepository.ShipRegion = order.ShipRegion;
+            //orderFromRepository.ShipPostalCode = order.ShipPostalCode;
+            //orderFromRepository.ShipCountry = order.ShipCountry;
 
             return NoContent();
         }

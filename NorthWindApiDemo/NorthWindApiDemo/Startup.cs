@@ -54,6 +54,7 @@ namespace NorthWindApiDemo
                 config.CreateMap<Customers, CustomerDTO>();
                 config.CreateMap<Orders, OrdersDTO>();
                 config.CreateMap<OrdersForCreationDTO, Orders>();
+                config.CreateMap<OrdersForUpdateDTO, Orders>();
             });
 
             app.UseMvc();
