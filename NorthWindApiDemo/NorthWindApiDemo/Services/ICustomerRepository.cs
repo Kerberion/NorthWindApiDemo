@@ -12,5 +12,6 @@ namespace NorthWindApiDemo.Services
         Customers GetCustomer(string customerID, bool includeOrders);
         IEnumerable<Orders> GetOrders(string customerId);
         Orders GetOrder(string customerId, int orderId);
+        bool CustomerExists(string customerId);
     }
 }

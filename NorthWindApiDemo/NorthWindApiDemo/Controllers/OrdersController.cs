@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.JsonPatch;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using NorthWindApiDemo.Models;
+using NorthWindApiDemo.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,43 +14,74 @@ namespace NorthWindApiDemo.Controllers
     [Route("api/customers")]
     public class OrdersController : Controller
     {
-        [HttpGet("{customerId}/orders")]
-        public IActionResult GetOrders(int customerId)
-        {
-            var customer = Repository.
-                Instance.
-                Customers.
-                FirstOrDefault(c => c.Id == customerId);
+        private ICustomerRepository _customerRepoitory;
 
-            if(customer == null)
+        public OrdersController(ICustomerRepository customerRepository)
+        {
+            _customerRepoitory = customerRepository;
+        }
+
+
+        [HttpGet("{customerId}/orders")]
+        public IActionResult GetOrders(string customerId)
+        {
+            if (!_customerRepoitory.CustomerExists(customerId))
             {
                 return NotFound();
             }
 
-            return Ok(customer.Orders);
+            var orders = _customerRepoitory.GetOrders(customerId);
+
+            var ordersResult = Mapper.Map<IEnumerable<OrdersDTO>>(orders);
+
+            //var customer = Repository.
+            //    Instance.
+            //    Customers.
+            //    FirstOrDefault(c => c.Id == customerId);
+
+            //if(customer == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //return Ok(customer.Orders);
+            return Ok(ordersResult);
         }
 
         [HttpGet("{customerId}/orders/{id}", Name = "GetOrder")]
-        public IActionResult GetOrder(int customerId, int id)
+        public IActionResult GetOrder(string customerId, int id)
         {
-            var customer = Repository.
-               Instance.
-               Customers.
-               FirstOrDefault(c => c.Id == customerId);
-
-            if (customer == null)
+            if (!_customerRepoitory.CustomerExists(customerId))
             {
                 return NotFound();
             }
 
-            var order = customer.Orders.FirstOrDefault(o => o.OrderId == id);
-
+            var order = _customerRepoitory.GetOrder(customerId, id);
             if (order == null)
             {
                 return NotFound();
             }
 
-            return Ok(order);
+            var orderResult = Mapper.Map<OrdersDTO>(order);
+            //var customer = Repository.
+            //   Instance.
+            //   Customers.
+            //   FirstOrDefault(c => c.Id == customerId);
+
+            //if (customer == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //var order = customer.Orders.FirstOrDefault(o => o.OrderId == id);
+
+            //if (order == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //return Ok(order);
+            return Ok(orderResult);
         }
        
         [HttpPost("{customerId}/orders")]
