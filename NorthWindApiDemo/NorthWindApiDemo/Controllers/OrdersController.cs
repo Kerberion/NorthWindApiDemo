@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using NorthWindApiDemo.EFModels;
 using NorthWindApiDemo.Models;
 using NorthWindApiDemo.Services;
 using System;
@@ -85,7 +86,7 @@ namespace NorthWindApiDemo.Controllers
         }
        
         [HttpPost("{customerId}/orders")]
-        public IActionResult CreateOrder(int customerId, [FromBody] OrdersForCreationDTO  order)
+        public IActionResult CreateOrder(string customerId, [FromBody] OrdersForCreationDTO  order)
         {
             if(order == null)
             {
@@ -97,43 +98,59 @@ namespace NorthWindApiDemo.Controllers
                 return BadRequest(ModelState);
             }
 
-            var customer = Repository.
-               Instance.
-               Customers.
-               FirstOrDefault(c => c.Id == customerId);
-
-            if (customer == null)
+            if (!_customerRepoitory.CustomerExists(customerId))
             {
                 return NotFound();
             }
 
-            var maxOrderId = Repository.Instance.Customers
-                .SelectMany(c => c.Orders)
-                .Max(o => o.OrderId);
+            //var customer = Repository.
+            //   Instance.
+            //   Customers.
+            //   FirstOrDefault(c => c.Id == customerId);
 
-            var finalOrder = new OrdersDTO()
+            //if (customer == null)
+            //{
+            //    return NotFound();
+            //}
+
+            var finalOrder = Mapper.Map<Orders>(order);
+
+            _customerRepoitory.Addorder(customerId, finalOrder);
+
+            if (!_customerRepoitory.save())
             {
-                    OrderId = maxOrderId++,
-                    CustomerId = order.CustomerId,
-                    EmployeeId = order.EmployeeId,
-                    OrderDate = order.OrderDate,
-                    RequiredDate = order.RequiredDate,
-                    ShippedDate = order.ShippedDate,
-                    ShipVia = order.ShipVia,
-                    Freight = order.Freight,
-                    ShipName = order.ShipName,
-                    ShipAddress = order.ShipAddress,
-                    ShipCity = order.ShipCity,
-                    ShipRegion = order.ShipRegion,
-                    ShipPostalCode = order.ShipPostalCode,
-                    ShipCountry = order.ShipCountry
-            };
-            customer.Orders.Add(finalOrder);
+                return StatusCode(500, "Please verify your data");
+            }
+
+            //var maxOrderId = Repository.Instance.Customers
+            //    .SelectMany(c => c.Orders)
+            //    .Max(o => o.OrderId);
+
+            //var finalOrder = new OrdersDTO()
+            //{
+            //        OrderId = maxOrderId++,
+            //        CustomerId = order.CustomerId,
+            //        EmployeeId = order.EmployeeId,
+            //        OrderDate = order.OrderDate,
+            //        RequiredDate = order.RequiredDate,
+            //        ShippedDate = order.ShippedDate,
+            //        ShipVia = order.ShipVia,
+            //        Freight = order.Freight,
+            //        ShipName = order.ShipName,
+            //        ShipAddress = order.ShipAddress,
+            //        ShipCity = order.ShipCity,
+            //        ShipRegion = order.ShipRegion,
+            //        ShipPostalCode = order.ShipPostalCode,
+            //        ShipCountry = order.ShipCountry
+            //};
+            //customer.Orders.Add(finalOrder);
+
+            var customerCreated = Mapper.Map<OrdersDTO>(finalOrder);
 
             return CreatedAtRoute("GetOrder",
                 new {
-                    customerId = customerId,id = finalOrder.OrderId
-                }, finalOrder);
+                    customerId = customerId,id = customerCreated.OrderId
+                }, customerCreated);
         }
 
         [HttpPut("{customerId}/orders/{id}")]

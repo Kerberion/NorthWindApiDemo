@@ -13,5 +13,7 @@ namespace NorthWindApiDemo.Services
         IEnumerable<Orders> GetOrders(string customerId);
         Orders GetOrder(string customerId, int orderId);
         bool CustomerExists(string customerId);
+        void Addorder(string customerId, Orders order);
+        bool save();
     }
 }

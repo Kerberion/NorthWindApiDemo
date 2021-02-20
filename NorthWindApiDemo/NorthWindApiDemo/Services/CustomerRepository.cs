@@ -16,6 +16,12 @@ namespace NorthWindApiDemo.Services
             _context = context;
         }
 
+        public void Addorder(string customerId, Orders order)
+        {
+            var customer = GetCustomer(customerId, false);
+            customer.Orders.Add(order);
+        }
+
         public bool CustomerExists(string customerId)
         {
             return _context.Customers.Any(c => c.CustomerId == customerId);
@@ -51,6 +57,11 @@ namespace NorthWindApiDemo.Services
         public IEnumerable<Orders> GetOrders(string customerId)
         {
             return _context.Orders.Where(c => c.CustomerId == customerId).ToList();
+        }
+
+        public bool save()
+        {
+           return(_context.SaveChanges() >=0);
         }
     }
 }
