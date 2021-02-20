@@ -220,7 +220,7 @@ namespace NorthWindApiDemo.Controllers
         }
 
         [HttpPatch("{customerId}/orders/{id}")]
-        public IActionResult UpdateOrder(int customerId, int id, [FromBody] JsonPatchDocument<OrdersForUpdateDTO> patchDocument)
+        public IActionResult UpdateOrder(string customerId, int id, [FromBody] JsonPatchDocument<OrdersForUpdateDTO> patchDocument)
         {
             if (patchDocument == null)
             {
@@ -232,60 +232,82 @@ namespace NorthWindApiDemo.Controllers
                 return BadRequest(ModelState);
             }
 
-            var customer = Repository.
-             Instance.
-             Customers.
-             FirstOrDefault(c => c.Id == customerId);
-
-            if (customer == null)
+            if (!_customerRepoitory.CustomerExists(customerId))
             {
                 return NotFound();
             }
 
-            var orderFromRepository = customer.Orders.FirstOrDefault(o => o.OrderId == id);
+            var existingOrder = _customerRepoitory.GetOrder(customerId, id);
 
-            if (orderFromRepository == null)
+            if (existingOrder == null)
             {
                 return NotFound();
             }
 
-            var orderToUpdate = new OrdersForUpdateDTO()
-            {
-                CustomerId = orderFromRepository.CustomerId,
-                EmployeeId = orderFromRepository.EmployeeId,
-                OrderDate = orderFromRepository.OrderDate,
-                RequiredDate = orderFromRepository.RequiredDate,
-                ShippedDate = orderFromRepository.ShippedDate,
-                ShipVia = orderFromRepository.ShipVia,
-                Freight = orderFromRepository.Freight,
-                ShipName = orderFromRepository.ShipName,
-                ShipAddress = orderFromRepository.ShipAddress,
-                ShipCity = orderFromRepository.ShipCity,
-                ShipRegion = orderFromRepository.ShipRegion,
-                ShipPostalCode = orderFromRepository.ShipPostalCode,
-                ShipCountry = orderFromRepository.ShipCountry
-            };
+            var orderToUpdate = Mapper.Map<OrdersForUpdateDTO>(existingOrder);
+
+            //var customer = Repository.
+            // Instance.
+            // Customers.
+            // FirstOrDefault(c => c.Id == customerId);
+
+            //if (customer == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //var orderFromRepository = customer.Orders.FirstOrDefault(o => o.OrderId == id);
+
+            //if (orderFromRepository == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //var orderToUpdate = new OrdersForUpdateDTO()
+            //{
+            //    CustomerId = orderFromRepository.CustomerId,
+            //    EmployeeId = orderFromRepository.EmployeeId,
+            //    OrderDate = orderFromRepository.OrderDate,
+            //    RequiredDate = orderFromRepository.RequiredDate,
+            //    ShippedDate = orderFromRepository.ShippedDate,
+            //    ShipVia = orderFromRepository.ShipVia,
+            //    Freight = orderFromRepository.Freight,
+            //    ShipName = orderFromRepository.ShipName,
+            //    ShipAddress = orderFromRepository.ShipAddress,
+            //    ShipCity = orderFromRepository.ShipCity,
+            //    ShipRegion = orderFromRepository.ShipRegion,
+            //    ShipPostalCode = orderFromRepository.ShipPostalCode,
+            //    ShipCountry = orderFromRepository.ShipCountry
+            //};
 
             patchDocument.ApplyTo(orderToUpdate,ModelState);
+
+            TryValidateModel(orderToUpdate);
 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            orderFromRepository.CustomerId = orderToUpdate.CustomerId;
-            orderFromRepository.EmployeeId = orderToUpdate.EmployeeId;
-            orderFromRepository.OrderDate = orderToUpdate.OrderDate;
-            orderFromRepository.RequiredDate = orderToUpdate.RequiredDate;
-            orderFromRepository.ShippedDate = orderToUpdate.ShippedDate;
-            orderFromRepository.ShipVia = orderToUpdate.ShipVia;
-            orderFromRepository.Freight = orderToUpdate.Freight;
-            orderFromRepository.ShipName = orderToUpdate.ShipName;
-            orderFromRepository.ShipAddress = orderToUpdate.ShipAddress;
-            orderFromRepository.ShipCity = orderToUpdate.ShipCity;
-            orderFromRepository.ShipRegion = orderToUpdate.ShipRegion;
-            orderFromRepository.ShipPostalCode = orderToUpdate.ShipPostalCode;
-            orderFromRepository.ShipCountry = orderToUpdate.ShipCountry;
+            Mapper.Map(orderToUpdate, existingOrder);
+
+            if (!_customerRepoitory.save())
+            {
+                return StatusCode(500, "Please verify your data");
+            }
+            //orderFromRepository.CustomerId = orderToUpdate.CustomerId;
+            //orderFromRepository.EmployeeId = orderToUpdate.EmployeeId;
+            //orderFromRepository.OrderDate = orderToUpdate.OrderDate;
+            //orderFromRepository.RequiredDate = orderToUpdate.RequiredDate;
+            //orderFromRepository.ShippedDate = orderToUpdate.ShippedDate;
+            //orderFromRepository.ShipVia = orderToUpdate.ShipVia;
+            //orderFromRepository.Freight = orderToUpdate.Freight;
+            //orderFromRepository.ShipName = orderToUpdate.ShipName;
+            //orderFromRepository.ShipAddress = orderToUpdate.ShipAddress;
+            //orderFromRepository.ShipCity = orderToUpdate.ShipCity;
+            //orderFromRepository.ShipRegion = orderToUpdate.ShipRegion;
+            //orderFromRepository.ShipPostalCode = orderToUpdate.ShipPostalCode;
+            //orderFromRepository.ShipCountry = orderToUpdate.ShipCountry;
 
             return NoContent();
         }
