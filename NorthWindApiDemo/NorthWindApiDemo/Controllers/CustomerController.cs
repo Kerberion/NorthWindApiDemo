@@ -22,48 +22,19 @@ namespace NorthWindApiDemo.Controllers
         [HttpGet()]
         public JsonResult GetCustomers()
         {
-
-            //return new JsonResult(Repository.Instance.Customers);
-
-            ////return new JsonResult(new List<object>()
-            ////{
-            ////    new { CustomerID =1, ContactName = "Anderson"},
-            ////    new { CustomerID =2, ContactName = "Solaris"}
-            ////});
-            ///
+            
             // lo ideal es devolver el conjunto de datos personalizados del DTO y no de la base de datos
             var customers = _customerRepostory.GetCustomers();
-            var results = Mapper.Map<IEnumerable<CustomerWithoutOrders>>(customers);
-            //var results = new List<CustomerWithoutOrders>();
-
-            //foreach(var customer in customers)
-            //{
-            //    results.Add(new CustomerWithoutOrders()
-            //    {
-            //        CustomerID = customer.CustomerId,
-            //        CompanyName = customer.CompanyName,
-            //        ContactName = customer.ContactName,
-            //        ContactTittle = customer.ContactTitle,
-            //        Address = customer.Address,
-            //        City = customer.City,
-            //        Region = customer.Region,
-            //        PostalCode = customer.PostalCode,
-            //        Country = customer.Country,
-            //        Phone = customer.Phone,
-            //        Fax = customer.Fax
-            //    });
-            //}
+            var results = Mapper.Map<IEnumerable<CustomerWithoutOrders>>(customers);         
 
             return new JsonResult(results);
         }
 
         [HttpGet("{id}")]
+
         //Regresar tipo generico ejemplo de JsonResult  retornar IACtionResult
         public IActionResult GetCustomer(string id, bool includeOrders = false)
         {
-            //var result =
-            //    Repository.Instance.Customers.
-            //    FirstOrDefault(c => c.Id == id);
 
             var customer = _customerRepostory.GetCustomer(id, includeOrders);
 
@@ -71,11 +42,6 @@ namespace NorthWindApiDemo.Controllers
             {
                 return NotFound();
             }
-
-            //if (result == null)
-            //{
-            //    return NotFound();
-            //}
             
             if (includeOrders)
             {
@@ -85,9 +51,6 @@ namespace NorthWindApiDemo.Controllers
 
             var customerResultOnly = Mapper.Map<CustomerWithoutOrders>(customer);
             return Ok(customerResultOnly);
-
-            //return Ok(result);
-            //return new JsonResult(result);
         }
     }
 }

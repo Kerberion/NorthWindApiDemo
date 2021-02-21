@@ -8,7 +8,7 @@ namespace NorthWindApiDemo.Models
 {
     public class OrdersForUpdateDTO
     {
-        //public int OrderId { get; set; }
+
         [Required]
         public string CustomerId { get; set; }
         public int EmployeeId { get; set; }
